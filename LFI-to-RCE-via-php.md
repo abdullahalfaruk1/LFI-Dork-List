@@ -175,7 +175,7 @@ A dangerous application pattern looks conceptually like:
 └────────┬─────────┘
          ↓
 ┌──────────────────┐
-│   PHP Application │
+│   PHP Application│
 └────────┬─────────┘
          ↓
 ┌──────────────────┐
